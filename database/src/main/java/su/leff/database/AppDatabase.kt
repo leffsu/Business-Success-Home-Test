@@ -3,8 +3,8 @@ package su.leff.database
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import su.leff.database.dao.UserDao
-import su.leff.database.entity.User
+import su.leff.database.user.UserDao
+import su.leff.database.user.User
 import java.util.concurrent.Executors
 
 @Database(

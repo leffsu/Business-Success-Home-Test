@@ -1,4 +1,4 @@
-package su.leff.businesssuccesshometest.util.avatar
+package su.leff.database.user.util
 
 import android.graphics.Color
 import kotlin.random.Random

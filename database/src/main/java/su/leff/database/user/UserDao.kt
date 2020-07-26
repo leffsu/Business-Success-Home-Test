@@ -1,7 +1,7 @@
-package su.leff.database.dao
+package su.leff.database.user
 
 import androidx.room.*
-import su.leff.database.entity.User
+import su.leff.database.user.User
 
 @Dao
 interface UserDao {

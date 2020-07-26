@@ -1,6 +1,6 @@
-package su.leff.businesssuccesshometest.util.avatar
+package su.leff.database.user.util
 
-import su.leff.database.entity.User
+import su.leff.database.user.User
 
 
 object AvatarUtils {

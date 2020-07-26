@@ -1,7 +1,4 @@
-package su.leff.database.repository
-
-import su.leff.database.dao.UserDao
-import su.leff.database.entity.User
+package su.leff.database.user
 
 class UserRepository(private val userDao: UserDao) {
 

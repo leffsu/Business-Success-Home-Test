@@ -3,8 +3,8 @@ package su.leff.businesssuccesshometest.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import su.leff.database.entity.User
-import su.leff.database.repository.UserRepository
+import su.leff.database.user.User
+import su.leff.database.user.UserRepository
 
 class ContactViewModel(private val userRepository: UserRepository): ViewModel(){
 
