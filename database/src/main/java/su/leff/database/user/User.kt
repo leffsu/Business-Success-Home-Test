@@ -2,6 +2,7 @@ package su.leff.database.user
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import su.leff.database.user.util.AvatarUtils
 import su.leff.database.user.util.ColorUtils
 
 @Entity(tableName = "user")
@@ -16,28 +17,31 @@ class User(
     val avatarGreen: Int,
     val avatarBlue: Int
 ) {
-    val color = ColorUtils.createColor(avatarRed, avatarGreen, avatarBlue)
+    @Transient
+    private val payload = AvatarUtils.generateAvatar(this)
+    @Transient
+    val color = payload.color
+    @Transient
+    val initials = payload.initials
 
-    companion object {
-        fun createUser(
-            firstName: String,
-            lastName: String,
-            phone: String,
-            websiteUrl: String,
-            avatarRed: Int,
-            avatarGreen: Int,
-            avatarBlue: Int
-        ): User {
-            return User(
-                0L,
-                firstName,
-                lastName,
-                phone,
-                websiteUrl,
-                avatarRed,
-                avatarGreen,
-                avatarBlue
-            )
-        }
+    fun createUser(
+        firstName: String,
+        lastName: String,
+        phone: String,
+        websiteUrl: String,
+        avatarRed: Int,
+        avatarGreen: Int,
+        avatarBlue: Int
+    ): User {
+        return User(
+            0L,
+            firstName,
+            lastName,
+            phone,
+            websiteUrl,
+            avatarRed,
+            avatarGreen,
+            avatarBlue
+        )
     }
 }

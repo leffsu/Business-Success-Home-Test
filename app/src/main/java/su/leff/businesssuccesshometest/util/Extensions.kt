@@ -1,6 +1,8 @@
 package su.leff.businesssuccesshometest.util
 
 import android.view.View
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 
 fun View.show() {
     this.visibility = View.VISIBLE
@@ -35,3 +37,8 @@ inline fun View.onClick(crossinline click: (View) -> Unit) {
         click(view)
     }
 }
+
+inline fun <VM : ViewModel> viewModelFactory(crossinline f: () -> VM) =
+    object : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(aClass: Class<T>):T = f() as T
+    }

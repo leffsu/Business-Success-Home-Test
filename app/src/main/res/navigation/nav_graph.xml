@@ -14,5 +14,10 @@
     <fragment
         android:id="@+id/contactInfoFragment"
         android:name="su.leff.businesssuccesshometest.ui.contactinfo.ContactInfoFragment"
-        android:label="ContactInfoFragment" />
+        android:label="ContactInfoFragment" >
+        <argument
+            android:name="userId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 </navigation>

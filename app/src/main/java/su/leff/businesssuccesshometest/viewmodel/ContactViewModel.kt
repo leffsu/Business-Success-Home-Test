@@ -31,7 +31,7 @@ class ContactViewModel(private val userRepository: UserRepository): ViewModel(){
     }
 
 
-    suspend fun getUser(userId: Long) {
-        userRepository.getUser(userId)
+    suspend fun getUser(userId: Long): User {
+        return userRepository.getUser(userId)
     }
 }
