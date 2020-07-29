@@ -3,6 +3,8 @@ package su.leff.businesssuccesshometest.util
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import su.leff.businesssuccesshometest.core.BaseFragment
 
 fun View.show() {
     this.visibility = View.VISIBLE
@@ -42,3 +44,7 @@ inline fun <VM : ViewModel> viewModelFactory(crossinline f: () -> VM) =
     object : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(aClass: Class<T>):T = f() as T
     }
+
+fun BaseFragment.goBack(){
+    findNavController().navigateUp()
+}

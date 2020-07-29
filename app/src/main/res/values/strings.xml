@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Business Success Home Test</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="phone">Телефон</string>
+    <string name="website">Веб-сайт</string>
+    <string name="fill_all_fields">Заполните все поля!</string>
 </resources>

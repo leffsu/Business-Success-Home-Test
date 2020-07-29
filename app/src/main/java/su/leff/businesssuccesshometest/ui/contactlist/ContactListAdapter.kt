@@ -2,6 +2,7 @@ package su.leff.businesssuccesshometest.ui.contactlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import su.leff.businesssuccesshometest.R
 import su.leff.database.user.User
@@ -12,9 +13,10 @@ class ContactListAdapter(val goToChat: (user: User) -> Unit) :
     private val users = ArrayList<User>()
 
     fun setList(list: List<User>) {
+        val result = DiffUtil.calculateDiff(ContactDiffCallback(users, list))
         users.clear()
         users.addAll(list)
-        notifyDataSetChanged()
+        result.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactListViewHolder {
@@ -32,5 +34,4 @@ class ContactListAdapter(val goToChat: (user: User) -> Unit) :
     override fun onBindViewHolder(holder: ContactListViewHolder, position: Int) {
         holder.bind(users[position])
     }
-
 }

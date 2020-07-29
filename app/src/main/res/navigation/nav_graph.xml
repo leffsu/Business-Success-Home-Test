@@ -10,11 +10,29 @@
         <action
             android:id="@+id/action_contactListFragment_to_contactInfoFragment"
             app:destination="@id/contactInfoFragment" />
+        <action
+            android:id="@+id/action_contactListFragment_to_contactEditFragment"
+            app:destination="@id/contactEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactInfoFragment"
         android:name="su.leff.businesssuccesshometest.ui.contactinfo.ContactInfoFragment"
         android:label="ContactInfoFragment" >
+        <argument
+            android:name="userId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_contactInfoFragment_to_contactEditFragment"
+            app:destination="@id/contactEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactEditFragment"
+        android:name="su.leff.businesssuccesshometest.ui.contactedit.ContactEditFragment"
+        android:label="ContactEditFragment" >
+        <action
+            android:id="@+id/action_contactEditFragment_to_contactInfoFragment"
+            app:destination="@id/contactInfoFragment" />
         <argument
             android:name="userId"
             app:argType="long"

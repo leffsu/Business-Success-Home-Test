@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_contactlist.*
 import su.leff.businesssuccesshometest.R
 import su.leff.businesssuccesshometest.core.BaseFragment
-import su.leff.businesssuccesshometest.ui.contactinfo.ContactInfoFragment
+import su.leff.businesssuccesshometest.ui.contactedit.ContactEditFragmentDirections
+import su.leff.businesssuccesshometest.util.onClick
 import su.leff.database.user.User
-import su.leff.database.user.util.ColorUtils
-import su.leff.database.user.util.ColorUtils.getRandomColorInRGB
 
 class ContactListFragment : BaseFragment() {
 
@@ -33,31 +34,31 @@ class ContactListFragment : BaseFragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rvUsers.adapter = contactAdapter
 
-        val list = ArrayList<User>()
-        ColorUtils.getRandomColor()
-        val color = getRandomColorInRGB()
-        list.add(User(0L, "Lev", "Nazarov", "89300057950", "leff.su", color[0], color[1], color[2]))
-        val color1 = getRandomColorInRGB()
-        list.add(
-            User(
-                0L,
-                "Lev",
-                "Nazarov",
-                "89300057950",
-                "leff.su",
-                color1[0],
-                color1[1],
-                color1[2]
-            )
-        )
+        rvUsers.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                when (newState) {
+                    RecyclerView.SCROLL_STATE_IDLE -> fab.show()
+                    else -> fab.hide()
+                }
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
 
-        contactAdapter.setList(list)
+        fab.onClick {
+            val action =
+                ContactListFragmentDirections.actionContactListFragmentToContactEditFragment(-1L)
+            findNavController().navigate(action)
+        }
+
+        contactViewModel.updateUsers()
+        contactViewModel.allUsers.observe(viewLifecycleOwner, Observer {
+            contactAdapter.setList(it)
+        })
     }
-
 
     private fun goToChat(user: User) {
-        val action = ContactListFragmentDirections.actionContactListFragmentToContactInfoFragment(user.userId)
+        val action =
+            ContactListFragmentDirections.actionContactListFragmentToContactInfoFragment(user.userId)
         findNavController().navigate(action)
     }
-
 }

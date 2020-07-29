@@ -22,6 +22,10 @@ class CircleFrameLayout(context: Context, attributeSet: AttributeSet?, defStyleA
     private val paint = Paint()
 
     var color: Int = Color.rgb(0, 0, 0)
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
@@ -29,6 +33,6 @@ class CircleFrameLayout(context: Context, attributeSet: AttributeSet?, defStyleA
         val y = height
         paint.style = Paint.Style.FILL
         paint.color = color
-        canvas?.drawCircle(x / 2.toFloat(), y / 2.toFloat(), x/2.toFloat(), paint)
+        canvas?.drawCircle(x / 2.toFloat(), y / 2.toFloat(), x / 2.toFloat(), paint)
     }
 }
